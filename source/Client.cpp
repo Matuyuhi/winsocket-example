@@ -11,10 +11,12 @@ void winsocket::Client::Start()
 
     std::thread receiveThread(&Client::ReceiveMessages, this);
     std::string userInput;
-    while (running) {
+    while (running)
+    {
         std::getline(std::cin, userInput);
 
-        if (userInput == "end") {
+        if (userInput == "end")
+        {
             running = false;
             break;
         }
@@ -31,9 +33,11 @@ void winsocket::Client::Start()
 void winsocket::Client::ReceiveMessages()
 {
     char buffer[1024];
-    while (running) {
+    while (running)
+    {
         const int bytesReceived = recv(connectSocket, buffer, sizeof(buffer), 0);
-        if (bytesReceived <= 0) {
+        if (bytesReceived <= 0)
+        {
             std::cout << "サーバーからの切断、またはエラーが発生しました。\n";
             running = false;
             break;

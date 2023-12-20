@@ -20,6 +20,7 @@ namespace winsocket
     /// \brief
     /// サーバー側でIDを割り当て、クライアントを識別する
     /// その他は通常の処理
+    /// 受け取ったメッセージを接続中のClient全てにID+メッセージで返す
     class Server : public NetworkEntity
     {
     public:
@@ -30,7 +31,7 @@ namespace winsocket
         std::atomic<int> nextClientId{1};
         std::mutex socketsMutex;
 
-        
+
         void HandleClient(int clientId, SOCKET clientSocket);
 
         SOCKET SetupListeningSocket() const;

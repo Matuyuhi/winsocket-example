@@ -50,7 +50,7 @@ void winsocket::Server::HandleClient(int clientId, SOCKET clientSocket)
         {
             send(socket.second, response.c_str(), static_cast<int>(response.length()), 0);
         }
-        
+
         std::cout << response << '\n';
     }
     CloseClientConnection(clientId);
@@ -96,7 +96,8 @@ SOCKET winsocket::Server::SetupListeningSocket() const
 void winsocket::Server::CloseClientConnection(int clientId)
 {
     std::lock_guard<std::mutex> lock(socketsMutex);
-    if (clientSockets.find(clientId) != clientSockets.end()) {
+    if (clientSockets.find(clientId) != clientSockets.end())
+    {
         closesocket(clientSockets[clientId]);
         clientSockets.erase(clientId);
         std::cout << "クライアント " << clientId << " が切断されました。\n";

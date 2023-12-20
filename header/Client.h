@@ -10,6 +10,8 @@
 namespace winsocket
 {
     /// クライアント側のコード
+    /// 入力した文字列をサーバーに送信する
+    /// 別スレッドでサーバーからのメッセージを受け付け、取得できたらコンソールに表示する
     class Client : public NetworkEntity
     {
     public:
